@@ -10,8 +10,7 @@ import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 @RestController
 public class CircuitBreakerController {
 	
-	private Logger logger = 
-				LoggerFactory.getLogger(CircuitBreakerController.class);
+	private final Logger logger = LoggerFactory.getLogger(CircuitBreakerController.class);
 	
 	@GetMapping("/sample-api")
 	//@Retry(name = "sample-api", fallbackMethod = "hardcodedResponse")

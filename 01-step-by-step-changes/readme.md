@@ -1,14 +1,14 @@
 ## Step 00 
 
-- Step 00 - Docker, Kubernetes and Microservices - Made for each other
-- Step 01 - Getting Started with Docker, Kubernetes and Google Kubernetes Engine
-- Step 02 - Creating Google Cloud Account
+- Step 00—Docker, Kubernetes and Microservices—Made for each other
+- Step 01—Getting Started with Docker, Kubernetes and Google Kubernetes Engine
+- Step 02—Creating Google Cloud Account
 - Step 03 - Creating Kubernetes Cluster with Google Kubernete Engine (GKE)
-- Step 04 - Review Kubernetes Cluster and Learn Few Fun Facts about Kubernetes
+- Step 04—Review Kubernetes Cluster and Learn Few Fun Facts about Kubernetes
 
 ## Step 05 
 
-- Step 05 - Deploy Your First Spring Boot Application to Kubernetes Cluster
+- Step 05—Deploy Your First Spring Boot Application to Kubernetes Cluster
 
 ```
 docker run -p 8080:8080 in28min/hello-world-rest-api:0.0.1.RELEASE
@@ -18,7 +18,7 @@ kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
 
 ## Step 06
 
-- Step 06 - Quick Look at Kubernetes Concepts - Pods, Replica Sets and Deployment
+- Step 06—Quick Look at Kubernetes Concepts - Pods, Replica Sets and Deployment
 
 ```
 kubectl get pods
