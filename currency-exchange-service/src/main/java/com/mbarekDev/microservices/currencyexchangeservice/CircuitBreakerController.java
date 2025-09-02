@@ -17,7 +17,7 @@ public class CircuitBreakerController {
 	//@CircuitBreaker(name = "default", fallbackMethod = "hardcodedResponse")
 	//@RateLimiter(name="default")
 	@Bulkhead(name="sample-api")
-	//10s => 10000 calls to the sample api
+	//10s => 10,000 calls to the sample api
 	public String sampleApi() {
 		logger.info("Sample api call received");
 //		ResponseEntity<String> forEntity = new RestTemplate().getForEntity("http://localhost:8080/some-dummy-url", 

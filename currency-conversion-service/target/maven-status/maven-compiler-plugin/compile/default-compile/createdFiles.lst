@@ -1,0 +1,5 @@
+com\mbarekDev\microservices\currencyconversionservice\CurrencyConversion.class
+com\mbarekDev\microservices\currencyconversionservice\CurrencyConversionServiceApplication.class
+com\mbarekDev\microservices\currencyconversionservice\RestTemplateConfiguration.class
+com\mbarekDev\microservices\currencyconversionservice\CurrencyConversionController.class
+com\mbarekDev\microservices\currencyconversionservice\CurrencyExchangeProxy.class
