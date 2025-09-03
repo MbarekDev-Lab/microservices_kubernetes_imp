@@ -17,7 +17,6 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration(proxyBeanMethods = false)
 class RestTemplateConfiguration {
-    
     @Bean
     RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
@@ -26,62 +25,62 @@ class RestTemplateConfiguration {
 
 @RestController
 public class CurrencyConversionController {
-	
-	private Logger logger = LoggerFactory.getLogger(CurrencyConversionController.class);
-	
-	@Autowired
-	private CurrencyExchangeProxy proxy;
 
-	@Autowired
-	private RestTemplate restTemplate;
+    private final Logger logger = LoggerFactory.getLogger(CurrencyConversionController.class);
 
-	@GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
-	public CurrencyConversion calculateCurrencyConversion(
-			@PathVariable String from,
-			@PathVariable String to,
-			@PathVariable BigDecimal quantity
-			) {
-		
-		//CHANGE-KUBERNETES
-		logger.info("calculateCurrencyConversion called with {} to {} with {}", from, to, quantity);
-		
-		HashMap<String, String> uriVariables = new HashMap<>();
-		uriVariables.put("from",from);
-		uriVariables.put("to",to);
-		
-		ResponseEntity<CurrencyConversion> responseEntity = restTemplate.getForEntity
-		("http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
-				CurrencyConversion.class, uriVariables);
-		
-		CurrencyConversion currencyConversion = responseEntity.getBody();
-		
-		return new CurrencyConversion(currencyConversion.getId(), 
-				from, to, quantity, 
-				currencyConversion.getConversionMultiple(), 
-				quantity.multiply(currencyConversion.getConversionMultiple()), 
-				currencyConversion.getEnvironment()+ " " + "rest template");
-		
-	}
+    @Autowired
+    private CurrencyExchangeProxy proxy;
 
-	@GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
-	public CurrencyConversion calculateCurrencyConversionFeign(
-			@PathVariable String from,
-			@PathVariable String to,
-			@PathVariable BigDecimal quantity
-			) {
-				
-		//CHANGE-KUBERNETES
-		logger.info("calculateCurrencyConversionFeign called with {} to {} with {}", from, to, quantity);
+    @Autowired
+    private RestTemplate restTemplate;
 
-		CurrencyConversion currencyConversion = proxy.retrieveExchangeValue(from, to);
-		
-		return new CurrencyConversion(currencyConversion.getId(), 
-				from, to, quantity, 
-				currencyConversion.getConversionMultiple(), 
-				quantity.multiply(currencyConversion.getConversionMultiple()), 
-				currencyConversion.getEnvironment() + " " + "feign");
-		
-	}
+    @GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
+    public CurrencyConversion calculateCurrencyConversion(
+            @PathVariable String from,
+            @PathVariable String to,
+            @PathVariable BigDecimal quantity
+    ) {
+
+        //CHANGE-KUBERNETES
+        logger.info("calculateCurrencyConversion called with {} to {} with {}", from, to, quantity);
+
+        HashMap<String, String> uriVariables = new HashMap<>();
+        uriVariables.put("from", from);
+        uriVariables.put("to", to);
+
+        ResponseEntity<CurrencyConversion> responseEntity = restTemplate.getForEntity
+                ("http://localhost:8000/currency-exchange/from/{from}/to/{to}",
+                        CurrencyConversion.class, uriVariables);
+
+        CurrencyConversion currencyConversion = responseEntity.getBody();
+
+        return new CurrencyConversion(currencyConversion.getId(),
+                from, to, quantity,
+                currencyConversion.getConversionMultiple(),
+                quantity.multiply(currencyConversion.getConversionMultiple()),
+                currencyConversion.getEnvironment() + " " + "rest template");
+
+    }
+
+    @GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
+    public CurrencyConversion calculateCurrencyConversionFeign(
+            @PathVariable String from,
+            @PathVariable String to,
+            @PathVariable BigDecimal quantity
+    ) {
+
+        //CHANGE-KUBERNETES
+        logger.info("calculateCurrencyConversionFeign called with {} to {} with {}", from, to, quantity);
+
+        CurrencyConversion currencyConversion = proxy.retrieveExchangeValue(from, to);
+
+        return new CurrencyConversion(currencyConversion.getId(),
+                from, to, quantity,
+                currencyConversion.getConversionMultiple(),
+                quantity.multiply(currencyConversion.getConversionMultiple()),
+                currencyConversion.getEnvironment() + " " + "feign");
+
+    }
 
 
 }

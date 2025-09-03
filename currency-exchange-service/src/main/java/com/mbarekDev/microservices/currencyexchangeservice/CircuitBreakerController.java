@@ -25,7 +25,6 @@ public class CircuitBreakerController {
 //		return forEntity.getBody();
 		return "sample-api";
 	}
-	
 	public String hardcodedResponse(Exception ex) {
 		return "fallback-response";
 	}
