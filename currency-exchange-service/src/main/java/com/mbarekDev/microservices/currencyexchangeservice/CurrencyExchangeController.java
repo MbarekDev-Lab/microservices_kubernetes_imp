@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CurrencyExchangeController {
 	
-	private Logger logger = LoggerFactory.getLogger(CurrencyExchangeController.class);
+	private final Logger logger = LoggerFactory.getLogger(CurrencyExchangeController.class);
 	
 	@Autowired
 	private CurrencyExchangeRepository repository;
@@ -38,7 +38,7 @@ public class CurrencyExchangeController {
 		
 		//CHANGE-KUBERNETES
 		String host = environment.getProperty("HOSTNAME");
-		String version = "v11";
+		String version = "v12";
 		
 		currencyExchange.setEnvironment(port + " " + version + " " + host);
 		
