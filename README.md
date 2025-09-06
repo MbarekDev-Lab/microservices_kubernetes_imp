@@ -24,7 +24,6 @@ You can reuse these images instead of creating and pushing new container images
 
 #### Commands
 ```
-
 docker run -p 8080:8080 in28min/hello-world-rest-api:0.0.1.RELEASE
 
 kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
@@ -137,4 +136,68 @@ watch -n 0.1 curl http://34.66.241.150:8100/currency-conversion-feign/from/USD/t
 
 docker push in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT
 docker push in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT
+
+
+----> Executor Family with Virtual Threads (Java 21+) <------
+Executor (interface)
+│
+├── ExecutorService (interface)
+│   │
+│   ├── AbstractExecutorService (abstract class)
+│   │   ├── ThreadPoolExecutor (class)
+│   │   └── ScheduledThreadPoolExecutor (class)
+│   │
+│   └── ScheduledExecutorService (interface)
+│       └── ScheduledThreadPoolExecutor (class)
+│
+└── ForkJoinPool (class, also implements ExecutorService)
+
+
+-> Executors (final class, utility factory)
+│
+├── newFixedThreadPool(int nThreads) → ThreadPoolExecutor
+├── newCachedThreadPool()            → ThreadPoolExecutor
+├── newSingleThreadExecutor()        → Delegated ExecutorService
+├── newWorkStealingPool()            → ForkJoinPool
+│
+├── newScheduledThreadPool(int core) → ScheduledThreadPoolExecutor
+├── newSingleThreadScheduledExecutor() → Delegated ScheduledExecutorService
+│
+├── unconfigurableExecutorService(ExecutorService) → wrapped ExecutorService
+├── unconfigurableScheduledExecutorService(ScheduledExecutorService)
+│
+├── defaultThreadFactory()           → ThreadFactory
+├── privilegedThreadFactory()        → ThreadFactory
+│
+├── callable(Runnable, T result)     → Callable<T>
+├── callable(PrivilegedAction<T>)    → Callable<T>
+├── privilegedCallable(Callable<T>)  → Callable<T>
+└── privilegedCallableUsingCurrentClassLoader(Callable<T>)
+
+
+
+ -> Executor Family with Virtual Threads (Java 21+) : 
+Executors (final class, utility factory)
+│
+├── newFixedThreadPool(int)           → ThreadPoolExecutor
+├── newCachedThreadPool()             → ThreadPoolExecutor
+├── newSingleThreadExecutor()         → Delegated ExecutorService
+├── newWorkStealingPool()             → ForkJoinPool
+│
+├── newScheduledThreadPool(int)       → ScheduledThreadPoolExecutor
+├── newSingleThreadScheduledExecutor() → Delegated ScheduledExecutorService
+│
+├── newVirtualThreadPerTaskExecutor() → VirtualThreadPerTaskExecutor (Java 21+)
+│
+├── unconfigurableExecutorService(ExecutorService)
+├── unconfigurableScheduledExecutorService(ScheduledExecutorService)
+│
+├── defaultThreadFactory()            → ThreadFactory
+├── privilegedThreadFactory()         → ThreadFactory
+│
+├── callable(Runnable, T result)      → Callable<T>
+├── callable(PrivilegedAction<T>)     → Callable<T>
+├── privilegedCallable(Callable<T>)
+└── privilegedCallableUsingCurrentClassLoader(Callable<T>)
+
 ```
