@@ -5,12 +5,12 @@
 You can reuse these images instead of creating and pushing new container images
 
 - Currency Exchange Service 
-	- v11 - in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
-  - v12 - in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT
+	- v11 - mbarek1/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
+  - v12 - mbarek1/mmv3-currency-exchange-service:0.0.12-SNAPSHOT
 - Currency Conversion Service
-	- in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
+	- mbarek1/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
     - Uses CURRENCY_EXCHANGE_SERVICE_HOST
-  - in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT
+  - mbarek1/mmv3-currency-conversion-service:0.0.12-SNAPSHOT
     - Uses CURRENCY_EXCHANGE_URI
 
 ## URLS
@@ -24,9 +24,9 @@ You can reuse these images instead of creating and pushing new container images
 
 #### Commands
 ```
-docker run -p 8080:8080 in28min/hello-world-rest-api:0.0.1.RELEASE
+docker run -p 8080:8080 mbarek1/hello-world-rest-api:0.0.1.RELEASE
 
-kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
+kubectl create deployment hello-world-rest-api --image=mbarek1/hello-world-rest-api:0.0.1.RELEASE
 kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
 kubectl scale deployment hello-world-rest-api --replicas=3
 kubectl delete pod hello-world-rest-api-58ff5dd898-62l9d
@@ -34,7 +34,7 @@ kubectl autoscale deployment hello-world-rest-api --max=10 --cpu-percent=70
 kubectl edit deployment hello-world-rest-api #minReadySeconds: 15
 kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
 
-gcloud container clusters get-credentials in28minutes-cluster --zone us-central1-a --project solid-course-258105
+gcloud container clusters get-credentials mbarek1-cluster --zone us-central1-a --project solid-course-258105
 kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
 kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
 kubectl set image deployment hello-world-rest-api hello-world-rest-api=DUMMY_IMAGE:TEST
@@ -81,12 +81,12 @@ kubectl delete pod hello-world-rest-api-67c79fd44f-n6c7l
 kubectl get pods -o wide
 kubectl delete pod hello-world-rest-api-67c79fd44f-8bhdt
 
-gcloud container clusters get-credentials in28minutes-cluster --zone us-central1-c --project solid-course-258105
+gcloud container clusters get-credentials mbarek1-cluster --zone us-central1-c --project solid-course-258105
 docker login
-docker push in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
-docker push in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
+docker push mbarek1/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
+docker push mbarek1/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
 
-kubectl create deployment currency-exchange --image=in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
+kubectl create deployment currency-exchange --image=mbarek1/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
 kubectl expose deployment currency-exchange --type=LoadBalancer --port=8000
 kubectl get svc
 kubectl get services
@@ -96,7 +96,7 @@ kubectl get replicaset
 kubectl get rs
 kubectl get all
 
-kubectl create deployment currency-conversion --image=in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
+kubectl create deployment currency-conversion --image=mbarek1/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
 kubectl expose deployment currency-conversion --type=LoadBalancer --port=8100
 
 kubectl get svc --watch
@@ -134,8 +134,8 @@ kubectl get configmap currency-conversion -o yaml >> configmap.yaml
 
 watch -n 0.1 curl http://34.66.241.150:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
 
-docker push in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT
-docker push in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT
+docker push mbarek1/mmv3-currency-conversion-service:0.0.12-SNAPSHOT
+docker push mbarek1/mmv3-currency-exchange-service:0.0.12-SNAPSHOT
 
 
 ----> Executor Family with Virtual Threads (Java 21+) <------
@@ -173,8 +173,6 @@ Executor (interface)
 ├── callable(PrivilegedAction<T>)    → Callable<T>
 ├── privilegedCallable(Callable<T>)  → Callable<T>
 └── privilegedCallableUsingCurrentClassLoader(Callable<T>)
-
-
 
  -> Executor Family with Virtual Threads (Java 21+) : 
 Executors (final class, utility factory)
