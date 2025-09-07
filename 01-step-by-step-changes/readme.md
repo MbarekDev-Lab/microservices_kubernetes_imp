@@ -11,7 +11,7 @@
 - Step 05—Deploy Your First Spring Boot Application to Kubernetes Cluster
 
 ```
-docker run -p 8080:8080 in28min/hello-world-rest-api:0.0.1.RELEASE
+docker run -p 8080:8080 mbarek1/hello-world-rest-api:0.0.1.RELEASE
 kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
 kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
 ```
@@ -63,7 +63,7 @@ kubectl explain replicaset
 
 ## Step 09
 - Step 09 - Understanding Deployment in Kubernetes
-- Step 10 - Quick Review of Kubernetes Concepts - Pods, Replica Sets and Deployment
+- Step 10—Quick Review of Kubernetes Concepts - Pods, Replica Sets and Deployment
 
 ```
 kubectl get rs
@@ -87,7 +87,7 @@ kubectl get events --sort-by=.metadata.creationTimestamp
 
 ## Step 11
 - Step 11 - Understanding Services in Kubernetes
-- Step 12 - Quick Review of GKE on Google Cloud Console
+- Step 12—Quick Review of GKE on Google Cloud Console
 - Step 13 - Understanding Kubernetes Architecture - Master Node and Nodes
 
 ```
@@ -115,8 +115,8 @@ gcloud container clusters get-credentials in28minutes-cluster --zone us-central1
 - Step 15 - Create Container images for Currency Exchange & Currency Conversion Microservices
 ```
 docker login
-docker push in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
-docker push in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
+docker push mbarek1/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
+docker push mbarek1/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
 ```
 ## Step 16
 
@@ -128,7 +128,7 @@ URLs
 
 
 ```
-kubectl create deployment currency-exchange --image=in28min/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
+kubectl create deployment currency-exchange --image=mbarek1/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
 kubectl expose deployment currency-exchange --type=LoadBalancer --port=8000
 kubectl get svc
 kubectl get services
@@ -138,7 +138,7 @@ kubectl get replicaset
 kubectl get rs
 kubectl get all
 
-kubectl create deployment currency-conversion --image=in28min/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
+kubectl create deployment currency-conversion --image=mbarek1/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
 kubectl expose deployment currency-conversion --type=LoadBalancer --port=8100
 kubectl get svc --watch
 
@@ -166,9 +166,9 @@ Step 18 - Clean up Kubernetes YAML for Microservices
 
 ## Step 19
 
-Step 19 - Enable Logging and Tracing APIs in Google Cloud Platform
+Step 19—Enable Logging and Tracing APIs in Google Cloud Platform
 
-- Enable Logging, Tracing and other Stack Driver APIs
+- Enable Logging, Tracing, and other Stack Driver APIs
 
 ## Step 20
 
@@ -195,8 +195,8 @@ kubectl get configmap currency-conversion -o yaml >> configmap.yaml
  
 watch -n 0.1 curl http://34.66.241.150:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
  
-docker push in28min/mmv3-currency-conversion-service:0.0.12-SNAPSHOT
-docker push in28min/mmv3-currency-exchange-service:0.0.12-SNAPSHOT
+docker push mbarek1/mmv3-currency-conversion-service:0.0.12-SNAPSHOT
+docker push mbarek1/mmv3-currency-exchange-service:0.0.12-SNAPSHOT
 ```
 
 ## Step 25
@@ -214,7 +214,7 @@ kubectl logs -f currency-exchange-9fc6f979b-2gmn8
 
 ## Step 26
 
-- Step 26 - Configuring Liveness and Readiness Probes for Microservices with K8S
+- Step 26—Configuring Liveness and Readiness Probes for Microservices with K8S
 
 Actuator URLs
 - http://localhost:8000/actuator/health/
