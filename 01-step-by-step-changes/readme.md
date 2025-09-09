@@ -224,6 +224,7 @@ Actuator URLs
 - http://localhost:8000/actuator/health/readiness
 
 ```
+
     spec:
       containers:
       - image: IMAGE
