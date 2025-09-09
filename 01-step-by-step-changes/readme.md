@@ -3,8 +3,8 @@
 - Step 00—Docker, Kubernetes and Microservices—Made for each other
 - Step 01—Getting Started with Docker, Kubernetes and Google Kubernetes Engine
 - Step 02—Creating Google Cloud Account
-- Step 03 - Creating Kubernetes Cluster with Google Kubernete Engine (GKE)
-- Step 04—Review Kubernetes Cluster and Learn Few Fun Facts about Kubernetes
+- Step 03- Creating Kubernetes Cluster with Google Kubernete Engine (GKE)
+- Step 04—Review Kubernetes Cluster and Learn a Few Fun Facts about Kubernetes
 
 ## Step 05 
 
@@ -111,8 +111,8 @@ kubectl get services
 gcloud container clusters get-credentials in28minutes-cluster --zone us-central1-c --project solid-course-258105
 ```
 
-- Step 14 - Setup Currency Exchange & Currency Conversion Microservices - K8S versions
-- Step 15 - Create Container images for Currency Exchange & Currency Conversion Microservices
+- Step 14—Setup Currency Exchange & Currency Conversion Microservices - K8S versions
+- Step 15—Create Container images for Currency Exchange & Currency Conversion Microservices
 ```
 docker login
 docker push mbarek1/mmv3-currency-exchange-service:0.0.11-SNAPSHOT
@@ -120,7 +120,7 @@ docker push mbarek1/mmv3-currency-conversion-service:0.0.11-SNAPSHOT
 ```
 ## Step 16
 
-- Step 16 - Deploy Microservices to Kubernetes & Understand Service Discovery
+- Step 16—Deploy Microservices to Kubernetes & Understand Service Discovery
 
 URLs
 - Currency Exchange Service - http://IP_ADDRESS:8000/currency-exchange/from/USD/to/INR
@@ -143,7 +143,6 @@ kubectl expose deployment currency-conversion --type=LoadBalancer --port=8100
 kubectl get svc --watch
 
 ```
-
 
 ## Step 17
 Step 17 - Creating Declarative Configuration Kubernetes YAML for Microservices
@@ -182,10 +181,10 @@ kubectl apply -f deployment.yaml
 
 ## Step 21
 
-- Step 21 - Playing with Kubernetes Declarative YAML Configuration
-- Step 22 - Creating Environment Variables to enable Microservice Communication
-- Step 23 - Understanding Centralized Configuration in Kubernetes - Config Maps
-- Step 24 - Exploring Centralized Logging and Monitoring in GKE
+- Step 21—Playing with Kubernetes Declarative YAML Configuration
+- Step 22—Creating Environment Variables to enable Microservice Communication
+- Step 23—Understanding Centralized Configuration in Kubernetes - Config Maps
+- Step 24—Exploring Centralized Logging and Monitoring in GKE
 
 ```
 kubectl create configmap currency-conversion --from-literal=CURRENCY_EXCHANGE_URI=http://currency-exchange
@@ -201,7 +200,7 @@ docker push mbarek1/mmv3-currency-exchange-service:0.0.12-SNAPSHOT
 
 ## Step 25
 
-- Step 25 - Exploring Microservices Deployments with Kubernetes
+- Step 25—Exploring Microservices Deployments with Kubernetes
 
 ```
 kubectl rollout history deployment currency-conversion
@@ -215,8 +214,11 @@ kubectl logs -f currency-exchange-9fc6f979b-2gmn8
 ## Step 26
 
 - Step 26—Configuring Liveness and Readiness Probes for Microservices with K8S
-
 Actuator URLs
+- Spring Boot Actuator (>=2.3) provides inbuild rteadiness and liveness probes.
+- /health/readiness
+- /health/liveness
+
 - http://localhost:8000/actuator/health/
 - http://localhost:8000/actuator/health/liveness
 - http://localhost:8000/actuator/health/readiness
@@ -243,7 +245,7 @@ Actuator URLs
 - Step 28 - Delete Kubernetes Cluster and Thank You!
 
 ```
-kubectl autoscale deployment currency-exchange --min=1 --max=3 --cpu-percent=5 
+kubectl autoscale deployment currency-exchange --min=1 --max=3 --cpu-percent=5 (PODS)
 kubectl get hpa
  
 kubectl top pod
